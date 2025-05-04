@@ -1,0 +1,23 @@
+
+---
+
+## 🚀 How to Deploy on Vercel
+
+This project is designed to run as an **API handler** (serverless function) on Vercel using **Python (via Flask or FastAPI)**.
+
+### 1. Create `api/recommend.py`
+Move your algorithm into an `api/recommend.py` file. Wrap it as an API handler like this:
+
+```python
+from fastapi import FastAPI, Request
+from your_algorithm_file import generate_recommendation  # adapt to your function
+
+app = FastAPI()
+
+@app.post("/recommend")
+async def recommend(request: Request):
+    data = await request.json()
+    user_query = data.get("query")
+    user_profile = data.get("profile")  # includes history, likes, etc.
+    result = generate_recommendation(user_query, user_profile)
+    return {"result": result}
