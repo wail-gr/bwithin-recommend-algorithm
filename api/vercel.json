@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/recommend.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/recommend",
+      "methods": ["POST"],
+      "dest": "api/recommend.py"
+    }
+  ]
+}
